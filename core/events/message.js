@@ -5,6 +5,6 @@ module.exports = async (client, message) => {
     const args = message.content.slice(client.settings.prefix.length).split(/ +/);
 	const cmd = args.shift().toLowerCase();
 
-    const runableCmd = client.commands.get(cmd);
+    const runableCmd = client.commands[cmd];
     if (runableCmd) runableCmd.run(client, message, args)
 }

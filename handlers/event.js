@@ -1,12 +1,11 @@
+const util = require('../util/utilities');
 const { readdirSync } = require('fs');
 
 module.exports = (client, cog) => {
     try {
         const events = readdirSync(`./cogs/${cog}/events/`).filter(x => x.endsWith('.js'));
         for (const event of events) {
-            const evt = require(`../cogs/${cog}/events/${event}`)
-            let eName = event.split(".")[0]
-            client.on(eName, evt.bind(null, client))
+            util.enableEvent(client, event.split(".")[0], `../cogs/${cog}/events/${event}`);
         }
         console.log("[COG] Events loaded from cog: " + cog)
     } catch (e) {
