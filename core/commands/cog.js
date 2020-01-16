@@ -1,8 +1,22 @@
 const fs = require('fs');
+const { RichEmbed } = require('discord.js')
 
 module.exports = {
     exec(client, message, args) {
         if (!client.settings.owners.includes(message.author.id)) return;
+
+        const embed = new RichEmbed();
+
+        if (!args[0]) {
+            cogs = []
+            for (const k in client.cogs) {
+                cogs.push([k, client.cogs[k] ? 'Enabled' : 'Disabled']);
+            }
+            embed.setColor("#99AAB5");
+            embed.setAuthor("Cog command help", "http://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/cog-icon.png");
+            embed.setDescription(`**Commands**\n\`${client.settings.prefix}cog enable <cogname>\` - Allows you to enable cogs\n\`${client.settings.prefix}cog disable <cogname>\` - Allows you to disable cogs\n\`${client.settings.prefix}cog reload <cogname>\` - Allows you to reload cogs and update changes made to the files.\n\n**Implemented cogs**\n${cogs.map(x => `\`[${x[0]}: ${x[1]}]\``).join(", ")}`);
+            return message.channel.send(embed);
+        }
 
         switch(args[0].toLowerCase()) {
 
