@@ -1,5 +1,5 @@
 module.exports = {
-    run(client, message, args) {
-        message.channel.send("HDsad")
+    exec(client, message, args) {
+        message.channel.send("Wazzup there, " + message.author.username);
     }
 }

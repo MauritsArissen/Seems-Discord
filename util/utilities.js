@@ -1,14 +1,25 @@
 const fs = require('fs');
 
 module.exports = {
-    enableEvent(client, event, path) {
+    enableEvent(client, event, path, cog) {
         const evt = require(path);
-        client.on(event, evt.bind(null, client));
+        client.events[event] ? null : client.events[event] = {};
+        client.events[event][cog] = { executable: evt }
     },
-    enableCommand(client, command, path) {
+    enableCommand(client, command, path, cog) {
         let check = client.commands[command];
         if (check) return console.error(`[ERROR] Command ${command} not able to load due to it already existing with the same name.`);
         const pull = require(path);
-        client.commands[command] = pull;
+        client.commands[command] = [pull, cog];
+    },
+    initEventTigger(client) {
+        for (const k in client.events) {
+            client.on(k, e => {
+                for (const c in client.events[k]) {
+                    client.events[k][c].executable(client, e);
+                }
+            })
+        }
     }
+    
 }

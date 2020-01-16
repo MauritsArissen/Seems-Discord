@@ -1,5 +1,10 @@
 {
-    "token": "",
-    "prefix": "!",
-    "owners": ["244909794836611082"]
+	"token": "",
+	"prefix": "!",
+	"owners": [
+		"244909794836611082"
+	],
+	"cogs": {
+		"example": true
+	}
 }

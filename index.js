@@ -5,14 +5,11 @@ const core = require('./core/initCore');
 const client = new Client();
 
 // Init client
-console.log("[STATUS] Starting up bot");
 client.settings = settings;
-["commands"].forEach(x => client[x] = {});
+["commands", "events", "cogs"].forEach(x => client[x] = {});
 core.init(client);
-// require('./handlers/cog')(client);
-
-console.log(client.commands);
-
+require('./handlers/cog')(client);
+core.eventsEnabled(client);
 
 // Client login
 client.login(process.env.TOKEN || client.settings.token);
