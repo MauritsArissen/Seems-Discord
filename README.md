@@ -11,4 +11,5 @@ Seems is an open source discord bot written in DiscordJS. This bot allows the us
 3. Open a cmd and open the folder
 4. Run `npm install`
 5. Run `npm start`
+
 Make sure to open the settings.json file to paste your own token and owner id in there for the bot to work.
