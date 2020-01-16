@@ -1,4 +1,4 @@
-![alt](https://i.imgur.com/nygkA0q.png)
+![alt](https://i.imgur.com/J8sA6pT.jpg)
 
 # Seems-Discord
 Seems is an open source discord bot written in DiscordJS. This bot allows the user to write custom cogs for their bot or import existing cogs made by others. There is an example cog made in the cogs folder to show you how to make your own commands and/or events.
